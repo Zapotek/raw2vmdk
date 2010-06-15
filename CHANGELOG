@@ -1,0 +1,11 @@
+$Id$
+
+Version 0.1.1
+	* segfault/raw2vmdk/VMDKTemplate.java (VMDTemplate):
+		now throws exception if template file is not found
+		
+	* segfault/raw2vmdk/Raw2VMDK.java (main):
+		handles exception thrown by VMDKTemplate.java
+		
+Version 0.1
+	* First version.
