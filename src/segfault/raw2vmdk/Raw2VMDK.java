@@ -4,7 +4,7 @@ package segfault.raw2vmdk;
 /*
  * $Id: Raw2VMDK.java 7 2010-06-15 07:38:18Z Zapotek $
  * 
- * Raw2VMDK.java Copyright (C) 2006-2008 Anastasios Laskos
+ * Raw2VMDK.java Copyright (C) 2010 Anastasios Laskos
  * <tasos.laskos@gmail.com>
  * 
  * 
