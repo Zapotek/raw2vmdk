@@ -2,7 +2,7 @@
 package segfault.raw2vmdk;
 
 /*
- * $Id: VMDKTemplate.java 7 2010-06-15 07:38:18Z Zapotek $
+ * $Id$
  * 
  * VMDKTemplate.java Copyright (C) 2010 Anastasios Laskos
  * <tasos.laskos@gmail.com>
@@ -41,14 +41,18 @@ import java.util.Iterator;
 public class VMDKTemplate {
 
     // the location of the VMDK template file
-    String tpl;
+    File tplFile;
 
     /**
      * @param tpl
      */
-    public VMDKTemplate( String tpl ) {
+    public VMDKTemplate( String tpl ) throws Exception {
 
-        this.tpl = tpl;
+        this.tplFile = new File( tpl );
+        
+        if( !tplFile.exists( ) ) {
+            throw new Exception( "Template file does not exist." );
+        }
     }
 
     /**
@@ -61,7 +65,7 @@ public class VMDKTemplate {
     public void write( HashMap<String, String> tplData, String outFile ) {
 
         try {
-            File tplFile = new File( tpl );
+//            File tplFile = new File( tpl );
             BufferedReader reader = new BufferedReader(
                     new FileReader( tplFile ) );
 

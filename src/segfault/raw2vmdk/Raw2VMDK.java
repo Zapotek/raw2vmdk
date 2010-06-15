@@ -2,7 +2,7 @@
 package segfault.raw2vmdk;
 
 /*
- * $Id: Raw2VMDK.java 7 2010-06-15 07:38:18Z Zapotek $
+ * $Id$
  * 
  * Raw2VMDK.java Copyright (C) 2010 Anastasios Laskos
  * <tasos.laskos@gmail.com>
@@ -37,9 +37,9 @@ import cert.forensics.mbr.MasterBootRecord;
  */
 public class Raw2VMDK {
 
-    private static final String VERSION = "0.1";
+    private static final String VERSION = "0.1.1";
 
-    private static final String SVN_REV = "$Rev$";
+    private static final String SVN_REV = "$Rev: 9 $";
 
     // total number of sectors
     static long                 numOfSectors;
@@ -118,15 +118,21 @@ public class Raw2VMDK {
 
         System.out.println( "\nLoading VMDK template..." );
 
-        // load VMDK template file
-        VMDKTemplate vmdkTpl = new VMDKTemplate( tpl );
+        try {
+            // load VMDK template file
+            VMDKTemplate vmdkTpl = new VMDKTemplate( tpl );
 
-        System.out.print( "Writing VMDK file to: " );
-
-        // write VMDK file to disk
-        vmdkTpl.write( vmdkData, args[1] );
-        System.out.println( args[1] );
-
+        
+            System.out.print( "Writing VMDK file to: " );
+    
+            // write VMDK file to disk
+            vmdkTpl.write( vmdkData, args[1] );
+            System.out.println( args[1] );
+        } catch( Exception e ) {
+            System.out.println( "\nError: " + e.getMessage( ) );
+            return;
+        }
+        
         System.out.println( "All done.\n" );
     }
 
