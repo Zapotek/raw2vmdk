@@ -39,7 +39,7 @@ public class Raw2VMDK {
 
     private static final String VERSION = "0.1.1";
 
-    private static final String SVN_REV = "$Rev: 9 $";
+    private static final String SVN_REV = "$Rev$";
 
     // total number of sectors
     static long                 numOfSectors;
