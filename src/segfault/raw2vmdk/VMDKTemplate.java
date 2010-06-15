@@ -2,7 +2,7 @@
 package segfault.raw2vmdk;
 
 /*
- * $Id$
+ * $Id: VMDKTemplate.java 7 2010-06-15 07:38:18Z Zapotek $
  * 
  * VMDKTemplate.java Copyright (C) 2006-2008 Anastasios Laskos
  * <tasos.laskos@gmail.com>
