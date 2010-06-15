@@ -1,10 +1,11 @@
+
 package segfault.raw2vmdk;
 
 /*
  * $Id$
  * 
  * Raw2VMDK.java Copyright (C) 2006-2008 Anastasios Laskos
- *                                       <tasos.laskos@gmail.com>
+ * <tasos.laskos@gmail.com>
  * 
  * 
  * This program is free software; you can redistribute it and/or modify it under
@@ -28,8 +29,7 @@ import java.util.*;
 import cert.forensics.mbr.MasterBootRecord;
 
 /**
- * Main class
- * Drives the cert.forensics.mbr.MasterBootRecord and
+ * Main class Drives the cert.forensics.mbr.MasterBootRecord and
  * segfault.raw2vmdk.VMDKTemplate classes.
  * 
  * @author zapotek <zapotek@segfault.gr>
@@ -42,22 +42,22 @@ public class Raw2VMDK {
     private static final String SVN_REV = "$Rev$";
 
     // total number of sectors
-    static long   numOfSectors;
+    static long                 numOfSectors;
 
     // total number of cylinders
-    static long   numOfCylinders;
+    static long                 numOfCylinders;
 
     // heads per track
-    static int    headsPerTrack;
+    static int                  headsPerTrack;
 
     // sectors per track
-    static long   sectorsPerTrack;
+    static long                 sectorsPerTrack;
 
     // the VMDK template
-    static String tpl = "vmdk.tpl";
+    static String               tpl     = "vmdk.tpl";
 
     // the location of the raw image
-    static String imageLocation;
+    static String               imageLocation;
 
     /**
      * @param args
@@ -65,47 +65,48 @@ public class Raw2VMDK {
     public static void main( String[] args ) {
 
         banner( );
-        
+
         if( args.length == 0 ) {
             usage( );
             return;
         }
-        
+
         if( args.length != 2 ) {
             usage( );
-            System.out.println( "\nError: raw2vmdk expects exactly 2 arguments." );
+            System.out
+                    .println( "\nError: raw2vmdk expects exactly 2 arguments." );
             return;
         }
-        
+
         imageLocation = args[0];
         File imgFile = new File( imageLocation );
-        
+
         // check if the raw image file exists
-        if( !imgFile.exists( ) ){
+        if( !imgFile.exists( ) ) {
             System.out.println( "\nError: Image file does not exist." );
             return;
         }
-        
+
         System.out.print( "Analysing image:\n" + imageLocation );
-        
+
         // analyse the image
         MasterBootRecord MBR = new MasterBootRecord( imgFile );
-        
+
         System.out.println( " [" + MBR.getFileSizeBytes( ) + " bytes]" );
-        System.out.println();
-        
+        System.out.println( );
+
         numOfSectors = MBR.totalSectorsOnDiskFromFile( );
         System.out.println( "Number of sectors:\t" + numOfSectors );
-        
+
         numOfCylinders = MBR.largestCylinderValOnDisk( );
         System.out.println( "Number of cylinders:\t" + numOfCylinders );
-        
+
         headsPerTrack = MBR.getPartitionEntry1( ).getNumHeads( );
         System.out.println( "Heads per track:\t" + headsPerTrack );
-        
+
         sectorsPerTrack = MBR.getPartitionEntry1( ).getEndSector( );
         System.out.println( "Sectors per track:\t" + sectorsPerTrack );
-        
+
         // create hashmap holding data for the VMDK template
         HashMap<String, String> vmdkData = new HashMap<String, String>( );
 
@@ -115,37 +116,41 @@ public class Raw2VMDK {
         vmdkData.put( "sectorsPerTrack", Long.toString( sectorsPerTrack ) );
         vmdkData.put( "imgLocation", imageLocation );
 
-        System.out.println( "\nLoading VMDK template...");
+        System.out.println( "\nLoading VMDK template..." );
 
         // load VMDK template file
         VMDKTemplate vmdkTpl = new VMDKTemplate( tpl );
-        
+
         System.out.print( "Writing VMDK file to: " );
-        
+
         // write VMDK file to disk
         vmdkTpl.write( vmdkData, args[1] );
         System.out.println( args[1] );
-        
+
         System.out.println( "All done.\n" );
     }
-    
+
     /**
      * 
      */
     public static void banner( ) {
-        System.out.println( "raw2vmdk " + VERSION + " [" + SVN_REV + "] initiated." );
+
+        System.out.println( "raw2vmdk " + VERSION + " [" + SVN_REV
+                + "] initiated." );
         System.out.println( "   Author: Zapotek <zapotek@segfault.gr>" );
         System.out.println( "   Website: http://www.segfault.gr" );
         System.out.println( );
     }
-    
+
     /**
      * 
      */
     public static void usage( ) {
+
         System.out.println( );
         System.out.println( "Usage:" );
-        System.out.println( "java -jar raw2vmdk.jar <raw image> <vmdk outfile>" );
+        System.out
+                .println( "java -jar raw2vmdk.jar <raw image> <vmdk outfile>" );
     }
 
 }

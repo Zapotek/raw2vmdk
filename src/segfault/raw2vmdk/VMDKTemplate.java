@@ -1,10 +1,11 @@
+
 package segfault.raw2vmdk;
 
 /*
  * $Id$
  * 
  * VMDKTemplate.java Copyright (C) 2006-2008 Anastasios Laskos
- *                                           <tasos.laskos@gmail.com>
+ * <tasos.laskos@gmail.com>
  * 
  * 
  * This program is free software; you can redistribute it and/or modify it under
@@ -22,7 +23,6 @@ package segfault.raw2vmdk;
  * Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -32,9 +32,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * Template manager.
- * Loads the default VMDK template file, evaluates it and creates new
- * VMDK file based on VMDKTemplate.write() parameters.
+ * Template manager. Loads the default VMDK template file, evaluates it and
+ * creates new VMDK file based on VMDKTemplate.write() parameters.
  * 
  * @author zapotek <zapotek@segfault.gr>
  * 
@@ -48,6 +47,7 @@ public class VMDKTemplate {
      * @param tpl
      */
     public VMDKTemplate( String tpl ) {
+
         this.tpl = tpl;
     }
 
@@ -62,7 +62,8 @@ public class VMDKTemplate {
 
         try {
             File tplFile = new File( tpl );
-            BufferedReader reader = new BufferedReader( new FileReader( tplFile ) );
+            BufferedReader reader = new BufferedReader(
+                    new FileReader( tplFile ) );
 
             String line = "", tplText = "";
 
@@ -70,7 +71,7 @@ public class VMDKTemplate {
             while( ( line = reader.readLine( ) ) != null ) {
                 tplText += line + System.getProperty( "line.separator" );
             }
-            
+
             // System.out.println( tplText );
             reader.close( );
 
@@ -89,7 +90,7 @@ public class VMDKTemplate {
             }
 
             // System.out.println( "vmdkText: " + vmdkText );
-            
+
             FileWriter writer = new FileWriter( outFile );
             writer.write( vmdkText );
             writer.close( );

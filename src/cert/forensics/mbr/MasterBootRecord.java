@@ -276,7 +276,7 @@ public class MasterBootRecord {
      */
     public long totalSectorsOnDiskFromFile( ) {
 
-        return getFileSizeBytes() / BYTES_PER_SECTOR;
+        return getFileSizeBytes( ) / BYTES_PER_SECTOR;
     }
 
     /**
@@ -371,7 +371,8 @@ public class MasterBootRecord {
     }
 
     /**
-     * @param fileSizeBytes the fileSizeBytes to set
+     * @param fileSizeBytes
+     *            the fileSizeBytes to set
      */
     public void setFileSizeBytes( long fileSizeBytes ) {
 
