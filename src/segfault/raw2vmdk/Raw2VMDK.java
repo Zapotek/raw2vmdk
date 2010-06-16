@@ -4,8 +4,7 @@ package segfault.raw2vmdk;
 /*
  * $Id$
  * 
- * Raw2VMDK.java Copyright (C) 2010 Anastasios Laskos
- * <tasos.laskos@gmail.com>
+ * Raw2VMDK.java Copyright (C) 2010 Anastasios Laskos <tasos.laskos@gmail.com>
  * 
  * 
  * This program is free software; you can redistribute it and/or modify it under
@@ -73,8 +72,8 @@ public class Raw2VMDK {
 
         if( args.length != 2 ) {
             usage( );
-            System.out
-                    .println( "\nError: raw2vmdk expects exactly 2 arguments." );
+            System.out.println( System.getProperty( "line.separator" )
+                    + "Error: raw2vmdk expects exactly 2 arguments." );
             return;
         }
 
@@ -83,11 +82,13 @@ public class Raw2VMDK {
 
         // check if the raw image file exists
         if( !imgFile.exists( ) ) {
-            System.out.println( "\nError: Image file does not exist." );
+            System.out.println( System.getProperty( "line.separator" )
+                    + "Error: Image file does not exist." );
             return;
         }
 
-        System.out.print( "Analysing image:\n" + imageLocation );
+        System.out.print( "Analysing image:"
+                + System.getProperty( "line.separator" ) + imageLocation );
 
         // analyse the image
         MasterBootRecord MBR = new MasterBootRecord( imgFile );
@@ -116,24 +117,26 @@ public class Raw2VMDK {
         vmdkData.put( "sectorsPerTrack", Long.toString( sectorsPerTrack ) );
         vmdkData.put( "imgLocation", imageLocation );
 
-        System.out.println( "\nLoading VMDK template..." );
+        System.out.println( System.getProperty( "line.separator" )
+                + "Loading VMDK template..." );
 
         try {
             // load VMDK template file
             VMDKTemplate vmdkTpl = new VMDKTemplate( tpl );
 
-        
             System.out.print( "Writing VMDK file to: " );
-    
+
             // write VMDK file to disk
             vmdkTpl.write( vmdkData, args[1] );
             System.out.println( args[1] );
         } catch( Exception e ) {
-            System.out.println( "\nError: " + e.getMessage( ) );
+            System.out.println( System.getProperty( "line.separator" )
+                    + "Error: " + e.getMessage( ) );
             return;
         }
-        
-        System.out.println( "All done.\n" );
+
+        System.out
+                .println( "All done." + System.getProperty( "line.separator" ) );
     }
 
     /**
