@@ -62,7 +62,7 @@ public class MasterBootRecord {
     /**
      * constructor for MasterBootRecord
      * 
-     * @param java
+     * @param image
      *            File to a disk image to obtain the mbr from
      */
     public MasterBootRecord( File image ) {
