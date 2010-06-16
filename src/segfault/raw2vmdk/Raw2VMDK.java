@@ -28,38 +28,69 @@ import java.util.*;
 import cert.forensics.mbr.MasterBootRecord;
 
 /**
- * Main class Drives the cert.forensics.mbr.MasterBootRecord and
- * segfault.raw2vmdk.VMDKTemplate classes.
+ * <p>Main class.</p>
+ * <p>Drives the cert.forensics.mbr.MasterBootRecord and
+ * segfault.raw2vmdk.VMDKTemplate classes.</p>
  * 
  * @author zapotek <zapotek@segfault.gr>
+ * @version 0.1.1
  * 
+ * @see cert.forensics.mbr.MasterBootRecord
+ * @see segfault.raw2vmdk.VMDKTemplate
  */
 public class Raw2VMDK {
 
+    /**
+     * The version of the application.<br/>
+     * Used in {@link #banner()}
+     */
     private static final String VERSION = "0.1.1";
 
+    /**
+     * The SVN revision of the application.<br/>
+     * Used in {@link #banner()}
+     */
     private static final String SVN_REV = "$Rev$";
 
-    // total number of sectors
+    /**
+     * total number of sectors
+     */
     static long                 numOfSectors;
 
-    // total number of cylinders
+    /** 
+     * total number of cylinders
+     */
     static long                 numOfCylinders;
 
-    // heads per track
+    /**
+     *  heads per track
+     */
     static int                  headsPerTrack;
 
-    // sectors per track
+    /**
+     *  sectors per track
+     */
     static long                 sectorsPerTrack;
 
-    // the VMDK template
+    /**
+     * the VMDK template
+     */
     static String               tpl     = "vmdk.tpl";
 
-    // the location of the raw image
+    /**
+     *  the location of the raw image
+     */
     static String               imageLocation;
 
     /**
+     * <p>Main method</p>
+     * <p>Drives the cert.forensics.mbr.MasterBootRecord and
+     * segfault.raw2vmdk.VMDKTemplate classes.</p>
+     * 
      * @param args
+     * 
+     * @see cert.forensics.mbr.MasterBootRecord
+     * @see segfault.raw2vmdk.VMDKTemplate
      */
     public static void main( String[] args ) {
 
@@ -140,7 +171,7 @@ public class Raw2VMDK {
     }
 
     /**
-     * 
+     * Outputs the banner message of the application
      */
     public static void banner( ) {
 
@@ -152,7 +183,7 @@ public class Raw2VMDK {
     }
 
     /**
-     * 
+     * Outputs usage info
      */
     public static void usage( ) {
 

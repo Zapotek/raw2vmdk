@@ -76,7 +76,7 @@ public class PartitionEntry {
     /**
      * constructor
      * 
-     * @param an
+     * @param pe
      *            integer array of the partition entry
      */
     public PartitionEntry( int[] pe ) {

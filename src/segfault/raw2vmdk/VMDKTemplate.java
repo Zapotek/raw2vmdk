@@ -32,23 +32,29 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * Template manager. Loads the default VMDK template file, evaluates it and
- * creates new VMDK file based on VMDKTemplate.write() parameters.
+ * <p>Template manager.</p>
+ * <p>Loads the default VMDK template file, evaluates it and
+ * creates new VMDK file based on {@link #write(HashMap, String)} parameters.</p>
  * 
  * @author zapotek <zapotek@segfault.gr>
- * 
+ * @version 0.1.1
  */
 public class VMDKTemplate {
 
-    // the location of the VMDK template file
+    /**
+     *  The VMDK template file
+     */
     File tplFile;
 
     /**
-     * @param tpl
+     * Constructor <br/>
+     * Initialises {@link #tplFile} using the tplLocation parameter
+     * 
+     * @param tplLocation the location of the template file
      */
-    public VMDKTemplate( String tpl ) throws Exception {
+    public VMDKTemplate( String tplLocation ) throws Exception {
 
-        this.tplFile = new File( tpl );
+        this.tplFile = new File( tplLocation );
         
         if( !tplFile.exists( ) ) {
             throw new Exception( "Template file does not exist." );
@@ -56,11 +62,11 @@ public class VMDKTemplate {
     }
 
     /**
-     * Create new VMDK file "outFile" from the template in "tpl" with the values
+     * Creates new VMDK file "outFile" from the template in "tpl" with the values
      * of tplData
      * 
-     * @param tplData
-     * @param outFile
+     * @param tplData   the template data data in a tplVarName => value
+     * @param outFile   where to write the .vmdk file
      */
     public void write( HashMap<String, String> tplData, String outFile ) {
 
