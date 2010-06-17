@@ -33,7 +33,7 @@ import cert.forensics.mbr.MasterBootRecord;
  * segfault.raw2vmdk.VMDKTemplate classes.</p>
  * 
  * @author zapotek <zapotek@segfault.gr>
- * @version 0.1.1
+ * @version 0.1.2
  * 
  * @see cert.forensics.mbr.MasterBootRecord
  * @see segfault.raw2vmdk.VMDKTemplate
@@ -87,7 +87,7 @@ public class Raw2VMDK {
      * <p>Drives the cert.forensics.mbr.MasterBootRecord and
      * segfault.raw2vmdk.VMDKTemplate classes.</p>
      * 
-     * @param args
+     * @param args  <raw image> <vmdk outfile>
      * 
      * @see cert.forensics.mbr.MasterBootRecord
      * @see segfault.raw2vmdk.VMDKTemplate

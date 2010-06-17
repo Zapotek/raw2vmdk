@@ -37,7 +37,7 @@ import java.util.Iterator;
  * creates new VMDK file based on {@link #write(HashMap, String)} parameters.</p>
  * 
  * @author zapotek <zapotek@segfault.gr>
- * @version 0.1.1
+ * @version 0.1.2
  */
 public class VMDKTemplate {
 
