@@ -1,17 +1,17 @@
 $Id$
 
-							raw2vmdk v0.1.1
-				      by Anastasios "Zapotek" Laskos 
-				    		<zapotek@segfault.gr>
-							<tasos.laskos@gmail.com>
+                            raw2vmdk v0.1.2
+                      by Anastasios "Zapotek" Laskos 
+                            <zapotek@segfault.gr>
+                          <tasos.laskos@gmail.com>
 
-	           Licensed under the GNU General Public License v2
+               Licensed under the GNU General Public License v2
 
 
 
 General
-----------
-	raw2vmdk is an OS independent Java utility that allows you to mount
+---------- 
+    raw2vmdk is an OS independent Java utility that allows you to mount
 raw disk images, like images created by "dd", using VMware.
 
 It analyzes the raw image and creates an approprietly formatted ".vmdk"
@@ -20,21 +20,30 @@ file that can be used to mount the image right away.
 The ".vmdk" file is created based on the "vmdk.tpl" template file.
 
 CAUTION:
-	*Do not* remove or edit the vmdk.tpl file unless you are really
+    *Do not* remove or edit the vmdk.tpl file unless you are really
 sure about what you're doing!
+
 
 Features
 -----------
 A feature list follows:
-	o Simple command line interface
-	o No need to convert the image, run raw2vmdk and mount
-		the created .vmdk file right away
-	o OS independent
+    o Simple command line interface
+    o No need to convert the image, run raw2vmdk and mount
+        the created .vmdk file right away
+    o OS independent
+
 
 Usage
 ------
 
 java -jar raw2vmdk.jar <raw image> <vmdk outfile>
+
+Note to MS Windows users:
+    When passing the command line arguments escape all slashes in path names.
+
+For example:
+    java -jar raw2vmdk.jar C:\\images\\raw\\disk.img D:\\images\\vmdk\\disk.vmdk
+
 
 
 Example
@@ -60,7 +69,7 @@ All done.
 
 Requirements
 -------------
-	
+    
 * java version "1.6.0_18" or greater
 
 
