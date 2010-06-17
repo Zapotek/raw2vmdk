@@ -12,7 +12,8 @@ $Id$
 General
 ---------- 
     raw2vmdk is an OS independent Java utility that allows you to mount
-raw disk images, like images created by "dd", using VMware.
+raw disk images, like images created by "dd", using VMware, VirtualBox or any
+other virtualization platform supporting the VMDK disk format.
 
 It analyzes the raw image and creates an approprietly formatted ".vmdk"
 file that can be used to mount the image right away.
