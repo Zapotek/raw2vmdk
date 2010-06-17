@@ -2,9 +2,9 @@ $Id$
 
 * vmdk.tpl:
 * segfault.raw2vmdk:
-	Anastasios "Zapotek" Laskos <zapotek@segfault.gr>
-								<tasos.laskos@gmail.com>
-								
+    Anastasios "Zapotek" Laskos <zapotek@segfault.gr>
+                                <tasos.laskos@gmail.com>
+                                
 * cert.forensics.mbr:
-	Tim Vidas <tvidas@gmail.com>
-	Brian Kaplan <bfkaplan@cmu.edu>
+    Tim Vidas <tvidas@gmail.com>
+    Brian Kaplan <bfkaplan@cmu.edu>
