@@ -44,7 +44,7 @@ public class Raw2VMDK {
      * The version of the application.<br/>
      * Used in {@link #banner()}
      */
-    private static final String VERSION = "0.1.1";
+    private static final String VERSION = "0.1.2";
 
     /**
      * The SVN revision of the application.<br/>
