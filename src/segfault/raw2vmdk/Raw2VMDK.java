@@ -33,7 +33,7 @@ import cert.forensics.mbr.MasterBootRecord;
  * segfault.raw2vmdk.VMDKTemplate classes.</p>
  * 
  * @author zapotek <zapotek@segfault.gr>
- * @version 0.1.2
+ * @version 0.1.3
  * 
  * @see cert.forensics.mbr.MasterBootRecord
  * @see segfault.raw2vmdk.VMDKTemplate
@@ -44,7 +44,7 @@ public class Raw2VMDK {
      * The version of the application.<br/>
      * Used in {@link #banner()}
      */
-    private static final String VERSION = "0.1.2";
+    private static final String VERSION = "0.1.3";
 
     /**
      * The SVN revision of the application.<br/>
@@ -101,15 +101,26 @@ public class Raw2VMDK {
             return;
         }
 
-        if( args.length != 2 ) {
+        if( args.length < 2 ) {
             usage( );
             System.out.println( System.getProperty( "line.separator" )
-                    + "Error: raw2vmdk expects exactly 2 arguments." );
+                    + "Error: raw2vmdk expects at least 2 arguments." );
             return;
         }
 
-        imageLocation = args[0];
-        File imgFile = new File( imageLocation );
+        String diskType = System.getProperty( "type", "ide" );
+        String[] acceptedTypes = { "ide", "buslogic", "lsilogic", "legacyESX" };
+        
+        if( !inArray( acceptedTypes, diskType ) ) {
+            System.out.println( System.getProperty( "line.separator" )
+                    + "Error: Disk type is incorrect." );
+            usage( );
+            return;
+        }
+        
+        imageLocation   = args[0];
+        
+        File imgFile    = new File( imageLocation );
 
         // check if the raw image file exists
         if( !imgFile.exists( ) ) {
@@ -142,6 +153,7 @@ public class Raw2VMDK {
         // create hashmap holding data for the VMDK template
         HashMap<String, String> vmdkData = new HashMap<String, String>( );
 
+        vmdkData.put( "diskType", diskType );
         vmdkData.put( "numOfSectors", Long.toString( numOfSectors ) );
         vmdkData.put( "numOfCylinders", Long.toString( numOfCylinders ) );
         vmdkData.put( "headsPerTrack", Integer.toString( headsPerTrack ) );
@@ -190,7 +202,20 @@ public class Raw2VMDK {
         System.out.println( );
         System.out.println( "Usage:" );
         System.out
-                .println( "java -jar raw2vmdk.jar <raw image> <vmdk outfile>" );
+            .println( "java -jar raw2vmdk.jar -Dtype=<ide|buslogic|" +
+                      "lsilogic|legacyESX> <raw image> <vmdk outfile>" );
+        
+        System.out.println( "\ntype defaults to 'ide'" );
+    }
+    
+    private static Boolean inArray( String[] arr, String str ) {
+        
+        for( String s: arr ) {
+          if( s.equals( str ) ) return true;
+        }
+        
+        return false;
+        
     }
 
 }
