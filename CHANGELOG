@@ -1,5 +1,9 @@
 $Id$
 
+Version 0.1.3.1
+    * segfault/raw2vmdk/Raw2VMDK.java (main):
+        fixed misleading example usage of the -Dtype parameter
+        
 Version 0.1.3
     * segfault/raw2vmdk/Raw2VMDK.java (main):
         added support for all available VMDK disk types

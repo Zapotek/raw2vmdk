@@ -1,6 +1,6 @@
 $Id$
 
-                            raw2vmdk v0.1.3
+                            raw2vmdk v0.1.3.1
                       by Anastasios "Zapotek" Laskos 
                             <zapotek@segfault.gr>
                           <tasos.laskos@gmail.com>
@@ -37,9 +37,11 @@ A feature list follows:
 Usage
 ------
 
-java -jar raw2vmdk.jar -Dtype=<ide|buslogic|lsilogic|legacyESX> <raw image> <vmdk outfile>
+java -Dtype=<ide|buslogic|lsilogic|legacyESX> -jar raw2vmdk.jar <raw image> <vmdk outfile>
 
 If no disk type has been specified it defaults to "ide".
+The -Dtype parameter must be passed to the java VM as shown above,
+not to raw2vmdk.
 
 Note to MS Windows users:
     When passing the command line arguments escape all slashes in path names.
@@ -53,7 +55,7 @@ Example
 ---------
 
 zapotek@zaptop:~/raw2vmdk-0.1.jar$ java -jar raw2vmdk.jar "/media/disk-2/VM/FreeBSD 8.0 Minimal/freebsd8min.img" /home/zapotek/freebsd8min.vmdk
-raw2vmdk 0.1.3 [$Rev: 28 $] initiated.
+raw2vmdk 0.1.3.1 [$Rev: 28 $] initiated.
    Author: Zapotek <zapotek@segfault.gr>
    Website: http://www.segfault.gr
 

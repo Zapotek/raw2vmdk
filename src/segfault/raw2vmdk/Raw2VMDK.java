@@ -33,7 +33,7 @@ import cert.forensics.mbr.MasterBootRecord;
  * segfault.raw2vmdk.VMDKTemplate classes.</p>
  * 
  * @author zapotek <zapotek@segfault.gr>
- * @version 0.1.3
+ * @version 0.1.3.1
  * 
  * @see cert.forensics.mbr.MasterBootRecord
  * @see segfault.raw2vmdk.VMDKTemplate
@@ -44,7 +44,7 @@ public class Raw2VMDK {
      * The version of the application.<br/>
      * Used in {@link #banner()}
      */
-    private static final String VERSION = "0.1.3";
+    private static final String VERSION = "0.1.3.1";
 
     /**
      * The SVN revision of the application.<br/>
@@ -202,8 +202,7 @@ public class Raw2VMDK {
         System.out.println( );
         System.out.println( "Usage:" );
         System.out
-            .println( "java -jar raw2vmdk.jar -Dtype=<ide|buslogic|" +
-                      "lsilogic|legacyESX> <raw image> <vmdk outfile>" );
+            .println( "java -jar -Dtype=<ide|buslogic|lsilogic|legacyESX> raw2vmdk.jar <raw image> <vmdk outfile>" );
         
         System.out.println( "\ntype defaults to 'ide'" );
     }
