@@ -31,7 +31,7 @@ import cert.forensics.mbr.MasterBootRecord;
  * segfault.raw2vmdk.VMDKTemplate classes.</p>
  *
  * @author Tasos "Zapotek" Laskos <tasos.laskos@gmail.com>
- * @version 0.1.3.1
+ * @version 0.1.3.2
  *
  * @see cert.forensics.mbr.MasterBootRecord
  * @see segfault.raw2vmdk.VMDKTemplate
@@ -42,7 +42,7 @@ public class Raw2VMDK {
      * The version of the application.<br/>
      * Used in {@link #banner()}
      */
-    private static final String VERSION = "0.1.3.1";
+    private static final String VERSION = "0.1.3.2";
 
     /**
      * The SVN revision of the application.<br/>
