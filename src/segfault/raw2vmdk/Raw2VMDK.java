@@ -187,7 +187,7 @@ public class Raw2VMDK {
 
         System.out.println( "raw2vmdk " + VERSION + " [" + SVN_REV
                 + "] initiated." );
-        System.out.println( "   Author: Zapotek <zapotek@segfault.gr>" );
+        System.out.println( "   Author: Tasos \"Zapotek\" Laskos <tasos.laskos@gmail.com>" );
         System.out.println( "   Website: http://www.segfault.gr" );
         System.out.println( );
     }
