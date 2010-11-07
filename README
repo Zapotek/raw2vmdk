@@ -1,7 +1,6 @@
-$Id$
 
                             raw2vmdk v0.1.3.1
-                      by Anastasios "Zapotek" Laskos 
+                      by Anastasios "Zapotek" Laskos
                             <zapotek@segfault.gr>
                           <tasos.laskos@gmail.com>
 
@@ -10,7 +9,7 @@ $Id$
 
 
 General
----------- 
+----------
     raw2vmdk is an OS independent Java utility that allows you to mount
 raw disk images, like images created by "dd", using VMware, VirtualBox or any
 other virtualization platform supporting the VMDK disk format.
@@ -74,14 +73,14 @@ All done.
 
 Requirements
 -------------
-    
+
 * java version "1.6.0_18" or greater
 
 
 Bug reports/Feature requests
 -------------------------------
-Please send your feedback using SourceForge's tracker system at 
-http://sourceforge.net/tracker/?group_id=328981.
+Please send your feedback using GitHub's issue system:
+https://github.com/Zapotek/raw2vmdk/issues
 
 
 License

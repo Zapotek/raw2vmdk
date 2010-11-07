@@ -2,21 +2,19 @@
 package segfault.raw2vmdk;
 
 /*
- * $Id$
- * 
  * Raw2VMDK.java Copyright (C) 2010 Anastasios Laskos <tasos.laskos@gmail.com>
- * 
- * 
+ *
+ *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along with
  * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
  * Place, Suite 330, Boston, MA 02111-1307 USA
@@ -31,10 +29,10 @@ import cert.forensics.mbr.MasterBootRecord;
  * <p>Main class.</p>
  * <p>Drives the cert.forensics.mbr.MasterBootRecord and
  * segfault.raw2vmdk.VMDKTemplate classes.</p>
- * 
+ *
  * @author zapotek <zapotek@segfault.gr>
  * @version 0.1.3.1
- * 
+ *
  * @see cert.forensics.mbr.MasterBootRecord
  * @see segfault.raw2vmdk.VMDKTemplate
  */
@@ -57,7 +55,7 @@ public class Raw2VMDK {
      */
     static long                 numOfSectors;
 
-    /** 
+    /**
      * total number of cylinders
      */
     static long                 numOfCylinders;
@@ -86,9 +84,9 @@ public class Raw2VMDK {
      * <p>Main method</p>
      * <p>Drives the cert.forensics.mbr.MasterBootRecord and
      * segfault.raw2vmdk.VMDKTemplate classes.</p>
-     * 
+     *
      * @param args  <raw image> <vmdk outfile>
-     * 
+     *
      * @see cert.forensics.mbr.MasterBootRecord
      * @see segfault.raw2vmdk.VMDKTemplate
      */
@@ -110,16 +108,16 @@ public class Raw2VMDK {
 
         String diskType = System.getProperty( "type", "ide" );
         String[] acceptedTypes = { "ide", "buslogic", "lsilogic", "legacyESX" };
-        
+
         if( !inArray( acceptedTypes, diskType ) ) {
             System.out.println( System.getProperty( "line.separator" )
                     + "Error: Disk type is incorrect." );
             usage( );
             return;
         }
-        
+
         imageLocation   = args[0];
-        
+
         File imgFile    = new File( imageLocation );
 
         // check if the raw image file exists
@@ -203,18 +201,18 @@ public class Raw2VMDK {
         System.out.println( "Usage:" );
         System.out
             .println( "java -jar -Dtype=<ide|buslogic|lsilogic|legacyESX> raw2vmdk.jar <raw image> <vmdk outfile>" );
-        
+
         System.out.println( "\ntype defaults to 'ide'" );
     }
-    
+
     private static Boolean inArray( String[] arr, String str ) {
-        
+
         for( String s: arr ) {
           if( s.equals( str ) ) return true;
         }
-        
+
         return false;
-        
+
     }
 
 }

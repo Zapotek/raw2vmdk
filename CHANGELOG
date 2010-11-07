@@ -1,9 +1,7 @@
-$Id$
-
 Version 0.1.3.1
     * segfault/raw2vmdk/Raw2VMDK.java (main):
         fixed misleading example usage of the -Dtype parameter
-        
+
 Version 0.1.3
     * segfault/raw2vmdk/Raw2VMDK.java (main):
         added support for all available VMDK disk types
@@ -15,9 +13,9 @@ Version 0.1.2
 Version 0.1.1
     * segfault/raw2vmdk/VMDKTemplate.java (VMDTemplate):
         now throws exception if template file is not found
-        
+
     * segfault/raw2vmdk/Raw2VMDK.java (main):
         handles exception thrown by VMDKTemplate.java
-        
+
 Version 0.1
     * First version.
