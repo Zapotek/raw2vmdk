@@ -2,7 +2,7 @@
 package segfault.raw2vmdk;
 
 /*
- * Raw2VMDK.java Copyright (C) 2010 Anastasios Laskos <tasos.laskos@gmail.com>
+ * Raw2VMDK.java Copyright (C) 2010 Tasos "Zapotek" Laskos <tasos.laskos@gmail.com>
  *
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -30,7 +30,7 @@ import cert.forensics.mbr.MasterBootRecord;
  * <p>Drives the cert.forensics.mbr.MasterBootRecord and
  * segfault.raw2vmdk.VMDKTemplate classes.</p>
  *
- * @author zapotek <zapotek@segfault.gr>
+ * @author Tasos "Zapotek" Laskos <tasos.laskos@gmail.com>
  * @version 0.1.3.1
  *
  * @see cert.forensics.mbr.MasterBootRecord

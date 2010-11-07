@@ -2,9 +2,7 @@
 package segfault.raw2vmdk;
 
 /*
- * VMDKTemplate.java Copyright (C) 2010 Anastasios Laskos
- * <tasos.laskos@gmail.com>
- *
+ * VMDKTemplate.java Copyright (C) 2010 Tasos "Zapotek" Laskos <tasos.laskos@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -34,7 +32,7 @@ import java.util.Iterator;
  * <p>Loads the default VMDK template file, evaluates it and
  * creates new VMDK file based on {@link #write(HashMap, String)} parameters.</p>
  *
- * @author zapotek <zapotek@segfault.gr>
+ * @author Tasos "Zapotek" Laskos <tasos.laskos@gmail.com>
  * @version 0.1.3
  */
 public class VMDKTemplate {
