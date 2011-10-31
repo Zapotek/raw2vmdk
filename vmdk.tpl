@@ -1,9 +1,3 @@
-# $Id$
-#
-# DO NOT remove or edit this file unless you are really
-# sure about what you're doing!
-#
-
 # Disk DescriptorFile
 version=1
 encoding="UTF-8"

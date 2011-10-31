@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="raw2vmdk" default="build" basedir=".">
+	<property name="build.dir" value="${basedir}/target" />
+	<property name="classes.dir" value="${basedir}/target/classes" />
+	<property name="jar.path" value="${basedir}/target/raw2vmdk.jar" />
+	<property name="src.dir" value="${basedir}/src" />
+
+	<!-- CLASSPATH required for build. -->
+	<path id="build.classpath">
+		<!--<fileset dir="${basedir}/src/cert/forensics/mbr" />-->
+	</path>
+
+	<target name="build">
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="build.classpath" fork="true" target="1.6" />
+		<jar destfile="${jar.path}" index="yes">
+			<manifest>
+				<attribute name="Main-Class" value="segfault.raw2vmdk.Raw2VMDK" />
+			</manifest>
+			<fileset dir="${classes.dir}" includes="**/*.class" />
+			<fileset dir="${basedir}/" includes="*.tpl" />
+		</jar>
+	</target>
+
+	<!-- Call this to build -->
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete file="${jar.path}" />
+	</target>
+</project>

@@ -78,14 +78,19 @@ public class Raw2VMDK {
     /**
      *  the location of the raw image
      */
-    static String               imageLocation;
-
+    static String               rawImageLocation;
+    
+    /**
+     *  the location of the raw image as written to the VMDK (defaults to the same as rawImageLocation)
+     */
+    static String               rawImageLocationInVmdk;
+    
     /**
      * <p>Main method</p>
      * <p>Drives the cert.forensics.mbr.MasterBootRecord and
      * segfault.raw2vmdk.VMDKTemplate classes.</p>
      *
-     * @param args  <raw image> <vmdk outfile>
+     * @param args  <raw image> <vmdk outfile> (<optional raw filename to write in VMDK>)
      *
      * @see cert.forensics.mbr.MasterBootRecord
      * @see segfault.raw2vmdk.VMDKTemplate
@@ -96,6 +101,7 @@ public class Raw2VMDK {
 
         if( args.length == 0 ) {
             usage( );
+            System.exit(1);
             return;
         }
 
@@ -103,6 +109,7 @@ public class Raw2VMDK {
             usage( );
             System.out.println( System.getProperty( "line.separator" )
                     + "Error: raw2vmdk expects at least 2 arguments." );
+            System.exit(1);
             return;
         }
 
@@ -113,22 +120,33 @@ public class Raw2VMDK {
             System.out.println( System.getProperty( "line.separator" )
                     + "Error: Disk type is incorrect." );
             usage( );
+            System.exit(2);
             return;
         }
 
-        imageLocation   = args[0];
+        // parse arguments 
+        rawImageLocation   = args[0];
+        String outFile = args[1];
+        if (args.length > 2) {
+            // an explicit filename for the RAW file referenced in the header VMDK has been specified, so use it
+            rawImageLocationInVmdk = args[2];
+        } else {
+            // use same filename as the source RAW filename
+            rawImageLocationInVmdk = rawImageLocation;
+        }
 
-        File imgFile    = new File( imageLocation );
+        File imgFile = new File( rawImageLocation );
 
         // check if the raw image file exists
         if( !imgFile.exists( ) ) {
             System.out.println( System.getProperty( "line.separator" )
                     + "Error: Image file does not exist." );
+            System.exit(3);
             return;
         }
 
         System.out.print( "Analysing image:"
-                + System.getProperty( "line.separator" ) + imageLocation );
+                + System.getProperty( "line.separator" ) + rawImageLocation );
 
         // analyse the image
         MasterBootRecord MBR = new MasterBootRecord( imgFile );
@@ -156,7 +174,7 @@ public class Raw2VMDK {
         vmdkData.put( "numOfCylinders", Long.toString( numOfCylinders ) );
         vmdkData.put( "headsPerTrack", Integer.toString( headsPerTrack ) );
         vmdkData.put( "sectorsPerTrack", Long.toString( sectorsPerTrack ) );
-        vmdkData.put( "imgLocation", imageLocation );
+        vmdkData.put( "imgLocation", rawImageLocationInVmdk );
 
         System.out.println( System.getProperty( "line.separator" )
                 + "Loading VMDK template..." );
@@ -168,11 +186,12 @@ public class Raw2VMDK {
             System.out.print( "Writing VMDK file to: " );
 
             // write VMDK file to disk
-            vmdkTpl.write( vmdkData, args[1] );
-            System.out.println( args[1] );
+            vmdkTpl.write( vmdkData, outFile );
+            System.out.println( outFile );
         } catch( Exception e ) {
             System.out.println( System.getProperty( "line.separator" )
                     + "Error: " + e.getMessage( ) );
+            System.exit(4);
             return;
         }
 
@@ -200,7 +219,7 @@ public class Raw2VMDK {
         System.out.println( );
         System.out.println( "Usage:" );
         System.out
-            .println( "java -jar -Dtype=<ide|buslogic|lsilogic|legacyESX> raw2vmdk.jar <raw image> <vmdk outfile>" );
+            .println( "java -jar -Dtype=<ide|buslogic|lsilogic|legacyESX> raw2vmdk.jar <raw image> <vmdk outfile> (imgLocation)" );
 
         System.out.println( "\ntype defaults to 'ide'" );
     }
