@@ -1,5 +1,11 @@
-
 package segfault.raw2vmdk;
+
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /*
  * VMDKTemplate.java Copyright (C) 2010 Tasos "Zapotek" Laskos <tasos.laskos@gmail.com>
@@ -19,13 +25,6 @@ package segfault.raw2vmdk;
  * Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * <p>Template manager.</p>
@@ -40,7 +39,7 @@ public class VMDKTemplate {
     /**
      *  The VMDK template file
      */
-    File tplFile;
+    String tplResourceLocation;
 
     /**
      * Constructor <br/>
@@ -48,62 +47,53 @@ public class VMDKTemplate {
      *
      * @param tplLocation the location of the template file
      */
-    public VMDKTemplate( String tplLocation ) throws Exception {
+    public VMDKTemplate(String tplLocation)
+    {
 
-        this.tplFile = new File( tplLocation );
-
-        if( !tplFile.exists( ) ) {
-            throw new Exception( "Template file does not exist." );
-        }
+        this.tplResourceLocation = "/" + tplLocation; // Located at root of classloader (in jar)
     }
 
     /**
-     * Creates new VMDK file "outFile" from the template in "tpl" with the values
-     * of tplData
-     *
-     * @param tplData   the template data data in a tplVarName => value
-     * @param outFile   where to write the .vmdk file
+     * Creates new VMDK file "outFile" from the template in "tpl" with the values of tplData
+     * 
+     * @param tplData
+     *            the template data data in a tplVarName => value
+     * @param outFile
+     *            where to write the .vmdk file
      */
-    public void write( HashMap<String, String> tplData, String outFile ) {
+    public void write(HashMap<String, String> tplData, String outFile) throws IOException
+    {
 
-        try {
-//            File tplFile = new File( tpl );
-            BufferedReader reader = new BufferedReader(
-                    new FileReader( tplFile ) );
+        BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(tplResourceLocation)));
 
-            String line = "", tplText = "";
+        String line = "", tplText = "";
 
-            // read the template file and store it in vmdkTpl
-            while( ( line = reader.readLine( ) ) != null ) {
-                tplText += line + System.getProperty( "line.separator" );
-            }
-
-            // System.out.println( tplText );
-            reader.close( );
-
-            Iterator<String> it = tplData.keySet( ).iterator( );
-            String vmdkText = tplText;
-
-            // replace template variables with actual values
-            while( it.hasNext( ) ) {
-                String key = (String) it.next( );
-                String val = tplData.get( key );
-
-                // System.out.println( key + "::" + val );
-
-                vmdkText = vmdkText.replaceAll( "\\[" + key + "\\]", val );
-
-            }
-
-            // System.out.println( "vmdkText: " + vmdkText );
-
-            FileWriter writer = new FileWriter( outFile );
-            writer.write( vmdkText );
-            writer.close( );
-
-        } catch( IOException ioe ) {
-            ioe.printStackTrace( );
+        // read the template file and store it in vmdkTpl
+        while ((line = reader.readLine()) != null) {
+            tplText += line + System.getProperty("line.separator");
         }
-    }
 
+        // System.out.println( tplText );
+        reader.close();
+
+        Iterator<String> it = tplData.keySet().iterator();
+        String vmdkText = tplText;
+
+        // replace template variables with actual values
+        while (it.hasNext()) {
+            String key = (String) it.next();
+            String val = tplData.get(key);
+
+            // System.out.println( key + "::" + val );
+
+            vmdkText = vmdkText.replaceAll("\\[" + key + "\\]", val);
+
+        }
+
+        // System.out.println( "vmdkText: " + vmdkText );
+
+        FileWriter writer = new FileWriter(outFile);
+        writer.write(vmdkText);
+        writer.close();
+    }
 }
